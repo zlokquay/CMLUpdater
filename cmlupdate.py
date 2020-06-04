@@ -30,5 +30,6 @@ def getUpdate(player_name):
 def run():
     for player in players:
         getUpdate(player)
+        tries = 0
 
 run()
