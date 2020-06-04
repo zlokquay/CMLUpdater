@@ -12,6 +12,7 @@ for optimal use. Once a patch comes out, I'll update to fix this.
 
 import requests, time
 
+tries = 0
 players = ["GFHL", "Kaznae_btw", "lron_coop", "Xoivex", "Karamja_Only", "Rive_r", "Pipinel"]
 url = "https://crystalmathlabs.com/tracker/api.php?type=update&player="
 
@@ -20,7 +21,11 @@ def getUpdate(player_name):
     print(player_name + ": code " + r.text)
     if r.text != "1":
         time.sleep(15)
-        getUpdate(player_name)
+        tries += 1
+        if tries < 20:
+            getUpdate(player_name)
+        else:
+            print("tries exceeded. player " + player_name + " has not been updated.")
 
 def run():
     for player in players:
